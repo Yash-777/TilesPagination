@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	
+	xmlns:util="http://www.springframework.org/schema/util"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-3.0.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	">
+	<!--  To enable task-annotations @Scheduled -->
+	<!--   <task:annotation-driven />
+	<util:properties id="applicationProps" location="classpath:application.properties" />
+	<context:property-placeholder properties-ref="applicationProps" />  
+	<bean id="demoServiceBasicUsageFixedDelay" class="com.github.serviceSchedulers.DemoServiceBasicUsageFixedDelay"/>
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/yash" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+	
+	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+			<value>EmpDto.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+			<prop key="hibernate.current_session_context_class">thread</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="ht" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="loginDao" class="com.github.daos.LoginRegisterDao" scope="singleton">
+		<property name="jt" ref="jt"/>
+		<!-- <property name="ht" ref="ht"/> -->
+	</bean>
+	<bean id="empdao" class="com.github.daos.EmpDao">
+		<!-- <property name="jt" ref="jt"/> -->
+		<property name="sessions" ref="sessionFactory"/>
+		<property name="ht" ref="ht"/>
+	</bean>
+	
+	<!-- <bean name="expiredPasswordFilterBean" class="com.github.filter.ExpiredPasswordFilter"/> -->
+
+	<!-- quartz -->
+	
+	<!-- <bean id="emial" class="com.github.quartzcore.QuartzEmail"/>
+	<bean id="myTask" class="com.github.quartzcore.MyTask" >
+		<property name="edao" ref="empdao"/>
+		<property name="email" ref="emial"/>
+	</bean> -->
+	<!--
+	<bean id="schedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+		<property name="targetObject" ref="myTask" />
+		<property name="targetMethod" value="sayHello" />
+	</bean>
+	<bean id="timerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask" ref="schedulerTask" />
+		<property name="delay" value="5000" />
+		<property name="period" value="5000" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="timerTask" />
+			</list>
+		</property>
+	</bean>
+	-->
+
+	<!-- <bean name="quartzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="myTask" />
+		<property name="targetMethod" value="sayHello" />
+	</bean>
+	
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"> 
+		<property name="jobDetail" ref="quartzJob" />
+		<property name="repeatInterval" value="1000" />
+		<property name="startDelay" value="1000" />
+	</bean>
+
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="quartzJob" />
+		<property name="cronExpression" value="0/60 * * * * ?" />
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="quartzJob" />
+			</list>
+		</property> 
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	-->
+</beans>

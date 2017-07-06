@@ -1,0 +1,1 @@
+<div id="footer" align="center">Company copy right information...</div>

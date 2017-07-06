@@ -1,0 +1,236 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+  http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.infotree</groupId>
+	<artifactId>SpringMaven</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>SpringMaven Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<springVersion>3.1.2.RELEASE</springVersion>
+		<tiles.version>2.2.2</tiles.version>
+		<!-- tiles.version 3.0.5 -->
+		<log4j.version>1.2.16</log4j.version>
+	</properties>
+<dependencies>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>3.8.1</version>
+		<scope>test</scope>
+	</dependency>
+	
+	<!-- Spring Framework -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.2.2</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.6</version>
+	</dependency>
+
+	<dependency>
+		<groupId>javax.validation</groupId>
+		<artifactId>validation-api</artifactId>
+		<version>1.0.0.GA</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-tools</artifactId>
+		<version>3.2.0.ga</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>3.6.10.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.2.0.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>javassist</groupId>
+		<artifactId>javassist</artifactId>
+		<version>3.12.1.GA</version>
+	</dependency>
+	
+	<!-- jquer  -->
+	<dependency>
+		<groupId>com.efsavage.jquery</groupId>
+		<artifactId>jquery-maven</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+	
+	<!--  appache tiles -->
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-extras</artifactId>
+		<version>${tiles.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-jsp</artifactId>
+		<version>${tiles.version}</version>
+	</dependency> 
+	 <dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-core</artifactId>
+		<version>${tiles.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-servlet</artifactId>
+		<version>${tiles.version}</version>
+	</dependency>	
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-template</artifactId>
+		<version>${tiles.version}</version>
+	</dependency>	
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-el</artifactId>
+		<version>${tiles.version}</version>
+	</dependency>
+		
+	<!-- log4j -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>${log4j.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-autotag-core-runtime</artifactId>
+		<version>1.1.0</version>
+	</dependency>
+		
+	<!-- Quartz API -->
+	<dependency>
+		<groupId>org.quartz-scheduler</groupId>
+		<artifactId>quartz</artifactId>
+		<version>2.1.5</version>
+	</dependency>
+	<!--
+	<dependency>
+		<groupId>org.quartz-scheduler</groupId>
+		<artifactId>quartz-jobs</artifactId>
+		<version>2.2.1</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.transaction</groupId>
+		<artifactId>jta</artifactId>
+		<version>1.1</version>
+	</dependency>
+	-->
+	
+	<!-- Display Tag -->
+	<dependency>
+		<groupId>displaytag</groupId>
+		<artifactId>displaytag</artifactId>
+		<version>1.2</version>
+		<!--
+		NoSuchMethodError: org.slf4j.impl.StaticLoggerBinder.getSingleton()
+		NoSuchMethodError: org.slf4j.spi.LocationAwareLogger -->
+		<exclusions>
+			<exclusion>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+	<dependency>
+		<groupId>displaytag</groupId>
+		<artifactId>displaytag-export-poi</artifactId>
+		<version>1.2</version>
+	</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.2-FINAL</version>
+		</dependency>
+	
+	<!-- <dependency>
+		<groupId>com.jezhumble.javasysmon</groupId>
+		<artifactId>javasysmon</artifactId>
+		<version>0.3.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.jcraft</groupId>
+		<artifactId>jsch</artifactId>
+		<version>0.1.46</version>
+	</dependency> -->
+	
+	<!-- Display Tag « Provided Dependencies -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>2.1</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version><!-- 1.1.2 -->
+	</dependency>
+</dependencies>
+<build>
+	<finalName>SpringMaven</finalName>
+</build>
+</project>
