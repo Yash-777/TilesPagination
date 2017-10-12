@@ -1,0 +1,11 @@
+
+/bin/
+/lib/*.jar
+
+# Project Related Settings.
+#.settings/*
+#.classpath
+.project
+
+# Maven classes.
+/target/

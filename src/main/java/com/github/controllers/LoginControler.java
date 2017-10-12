@@ -73,6 +73,7 @@ public class LoginControler {
 				model.addAttribute("loginDto", loginDto);
 				HttpSession session = req.getSession();
 				session.setAttribute("userName", loginDto.getUserName());
+				// return "redirect:/list.form"; To redirect to the controller
 			}
 		}
 		mav.setViewName(returnVal);
